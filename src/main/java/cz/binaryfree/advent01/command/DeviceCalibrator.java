@@ -1,56 +1,32 @@
 package cz.binaryfree.advent01.command;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class DeviceCalibrator {
 
-    private int freq = 0;
-    private Stream<String> input;
+    protected int freq = 0;
+    protected final List<Integer> input;
 
-    private DeviceCalibrator(Stream<String> input) {
+    public DeviceCalibrator(List<Integer> input) {
         this.input = input;
+        if (input == null) {
+            throw new IllegalStateException("Input must not be null");
+        }
     }
 
-    private DeviceCalibrator(Stream<String> input, int startFreq) {
+    protected DeviceCalibrator(List<Integer> input, int startFreq) {
         this(input);
         this.freq = startFreq;
     }
 
     public int calibrate() {
-       return input.map(this::convertToInt)
-               .reduce(freq, this::compute);
-    }
-
-    public int convertToInt(String input) {
-        return Integer.parseInt(input, 10);
+       return input.stream()
+                    .reduce(freq, this::compute);
     }
 
     public int compute(int currentFreq, int change) {
         return currentFreq + change;
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-    static class Builder {
-        private int freq = 0;
-        private Stream<String> input;
-
-        public Builder freq(int freq) {
-            this.freq = freq;
-            return this;
-        }
-
-        public Builder input(Stream input) {
-            this.input = input;
-            return this;
-        }
-
-        public DeviceCalibrator build() {
-            if (input == null) {
-                throw new IllegalStateException("Input must not be null");
-            }
-            return new DeviceCalibrator(input, freq);
-        }
-    }
 }

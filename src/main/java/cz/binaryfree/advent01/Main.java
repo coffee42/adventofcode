@@ -28,7 +28,7 @@ public class Main {
             if (cmdLine.hasOption("f")) {
                 fileInput = cmdLine.getOptionValue("f");
                 File file = Path.of(".").resolve(fileInput).toFile();
-                command = new DefaultInputCommand(file);
+                command = new DefaultInputCommand(Integer.parseInt(freqInput), file);
             }
             else {
                 command = new DefaultInputCommand(Integer.parseInt(freqInput));
