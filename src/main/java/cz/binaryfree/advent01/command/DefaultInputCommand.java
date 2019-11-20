@@ -1,6 +1,7 @@
 package cz.binaryfree.advent01.command;
 
 import cz.binaryfree.advent01.calibrator.DeviceCalibrator;
+import cz.binaryfree.advent01.calibrator.IterationDeviceCalibrator;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -28,7 +29,7 @@ public class DefaultInputCommand implements Command{
         initDeviceCalibrator(freq, input);
     }
     private void initDeviceCalibrator(int freq, List<Integer> input) {
-        deviceCalibrator = new DeviceCalibrator(input, freq);
+        deviceCalibrator = new IterationDeviceCalibrator(input, freq);
     }
 
     private List<Integer> readInput (File file) throws IOException {
