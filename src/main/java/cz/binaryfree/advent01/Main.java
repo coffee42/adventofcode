@@ -35,8 +35,8 @@ public class Main {
             }
             command.doWork();
         }
-        catch (ParseException ex) {
-            System.err.format(ex.getMessage());
+        catch (Exception ex) {
+            ex.printStackTrace();
             helpCommand.doWork();
         }
     }
@@ -56,7 +56,6 @@ public class Main {
                                 .longOpt(null)
                                 .hasArg(true)
                                 .desc("set starting frequency")
-                                .type(Integer.class)
                                 .build()
                 )
                 .addOption(
