@@ -1,9 +1,8 @@
 
-package cz.binaryfree.advent01.command;
+package cz.binaryfree.advent01.calibrator
+
 import spock.lang.Specification
 import spock.lang.Unroll
-
-import java.util.stream.Stream
 
 class DeviceCalibratorSpec extends Specification {
 

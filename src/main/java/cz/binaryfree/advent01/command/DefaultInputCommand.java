@@ -1,5 +1,7 @@
 package cz.binaryfree.advent01.command;
 
+import cz.binaryfree.advent01.calibrator.DeviceCalibrator;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -29,18 +31,18 @@ public class DefaultInputCommand implements Command{
         deviceCalibrator = new DeviceCalibrator(input, freq);
     }
 
-    protected List<Integer> readInput (File file) throws IOException {
+    private List<Integer> readInput (File file) throws IOException {
         if (file.exists() && file.isFile()) {
             return readInput(new FileInputStream(file));
         }
         else throw new FileNotFoundException(file.getAbsolutePath());
     }
 
-    protected List<Integer> readInput (InputStream inputStream) throws IOException {
+    private List<Integer> readInput (InputStream inputStream) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             return reader.lines()
                     .map( i -> Integer.parseInt(i, 10))
-                    .collect(Collectors.toCollection(ArrayList<Integer>::new));
+                    .collect(Collectors.toCollection(ArrayList::new));
         }
     }
 

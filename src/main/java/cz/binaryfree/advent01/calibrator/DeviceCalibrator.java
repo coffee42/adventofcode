@@ -1,4 +1,4 @@
-package cz.binaryfree.advent01.command;
+package cz.binaryfree.advent01.calibrator;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ public class DeviceCalibrator {
         }
     }
 
-    protected DeviceCalibrator(List<Integer> input, int startFreq) {
+    public DeviceCalibrator(List<Integer> input, int startFreq) {
         this(input);
         this.freq = startFreq;
     }
